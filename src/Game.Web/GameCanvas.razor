@@ -1,0 +1,20 @@
+@using Microsoft.JSInterop
+@inject IJSRuntime JS
+
+@*
+    Thin host component: boots the Three.js view once. The per-frame sim tick
+    does NOT flow through this component — JS calls the static [JSInvokable]
+    InteropHost.OnFrame directly (window.DotNet.invokeMethod), so Blazor's
+    render/diff cycle is never in the hot path.
+*@
+
+<div id="game" class="game-canvas"></div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+        await JS.InvokeVoidAsync("ScRtts.init", "game", new { mapSize = 400 });
+        await JS.InvokeVoidAsync("ScRtts.startLoop");
+    }
+}

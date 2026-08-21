@@ -55,3 +55,14 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# --- ScRtts local verification tooling (not part of the game) ---
+chromium/
+.venv/
+_repocheck/
+verify/*.png
+*.log
+
+[Pp]ublish/
+bin/
+obj/

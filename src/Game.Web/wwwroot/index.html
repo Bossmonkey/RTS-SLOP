@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ScRtts — Blazor RTS (Phase 0)</title>
+    <base href="/" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <!-- Three.js + our view layer load BEFORE the .NET runtime boots, so
+         window.ScRtts exists by the time C# calls into it. -->
+    <script src="lib/three/three.min.js"></script>
+    <script src="js/game.js"></script>
+    <link href="Game.Web.styles.css" rel="stylesheet" />
+</head>
+
+<body style="margin:0; background:#05070c; overflow:hidden;">
+    <!-- The 3D viewport. JS owns this canvas entirely (rAF loop, input). -->
+    <canvas id="game"></canvas>
+
+    <!-- Blazor mounts here and renders only the static HUD chrome. -->
+    <div id="app">
+        <svg class="loading-progress" style="position:fixed; inset:0; margin:auto;">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text" style="position:fixed; inset:0; display:flex; align-items:center; justify-content:center;">Loading…</div>
+    </div>
+
+    <!-- JS-owned perf readout (updated ~2x/sec, never through Blazor diffing) -->
+    <div id="perf"></div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+</body>
+
+</html>

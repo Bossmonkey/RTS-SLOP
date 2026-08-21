@@ -1,0 +1,99 @@
+/* ScRtts — Phase 0 view styling */
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #05070c;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+/* The WebGL canvas is the whole viewport. */
+#game {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    cursor: crosshair;
+}
+
+/* Blazor's #app div must not paint over the canvas. */
+#app {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;   /* HUD is informational; clicks pass to the canvas */
+}
+
+/* ---- HUD chrome (Blazor-rendered, static) ------------------------------ */
+
+.hud-title {
+    position: absolute;
+    top: 14px;
+    left: 18px;
+    color: #cfe6ff;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+.hud-title .sub {
+    display: block;
+    margin-top: 4px;
+    color: #5f7d9c;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: none;
+    font-weight: 400;
+}
+
+.hud-help {
+    position: absolute;
+    bottom: 16px;
+    left: 18px;
+    color: #7d95ad;
+    font-size: 12px;
+    line-height: 1.7;
+    background: rgba(8, 14, 22, 0.55);
+    border: 1px solid rgba(90, 130, 170, 0.25);
+    border-radius: 6px;
+    padding: 10px 14px;
+    backdrop-filter: blur(4px);
+}
+
+.hud-help b { color: #b8d4f0; font-weight: 600; }
+
+/* JS-owned perf readout (top-right). */
+#perf {
+    position: fixed;
+    top: 14px;
+    right: 18px;
+    z-index: 10;
+    color: #7fd6a0;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    background: rgba(8, 14, 22, 0.55);
+    border: 1px solid rgba(90, 130, 170, 0.25);
+    border-radius: 6px;
+    padding: 6px 10px;
+    pointer-events: none;
+}
+
+/* Loading spinner (pre-Blazor). */
+.loading-progress {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: 42vmin;
+    height: 42vmin;
+    animation: load8 1.4s linear infinite;
+}
+
+@keyframes load8 {
+    from { transform: rotate(0turn); }
+    to   { transform: rotate(1turn); }
+}
